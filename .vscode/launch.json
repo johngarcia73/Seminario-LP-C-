@@ -1,0 +1,27 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        
+      {
+        "name": "(gdb) Launch",
+        "type": "cppdbg",
+        "request": "launch",
+        "program": "C:/General/Año 3/Semestre 2/Lenguajes de Programación/Seminario>/code.exe", // Ruta al ejecutable
+        "args": [],
+        "stopAtEntry": false,
+        "cwd": "Seminario",
+        "environment": [],
+        "externalConsole": true,
+        "MIMode": "gdb",
+        "miDebuggerPath": "C:\\MinGW\\bin\\g++.exe",
+        "setupCommands": [
+          {
+            "description": "Habilitar impresión de formato de datos",
+            "text": "-enable-pretty-printing",
+            "ignoreFailures": true
+          }
+        ]
+      }
+    ]
+  }
+  

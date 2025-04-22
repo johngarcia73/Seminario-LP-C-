@@ -1,0 +1,41 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}  % Para manejo de acentos y caracteres UTF-8
+\usepackage[T1]{fontenc}     % Para una mejor codificaci\'on de fuentes
+\usepackage{lmodern}         % Fuente mejorada
+\usepackage{hyperref}        % Para hiperv\'inculos
+
+\begin{document}
+
+
+\section{Nuevos elementos de C++11 para manejo de memoria inteligente}
+C++11 introdujo los \textbf{smart pointers} (\texttt{std::unique\_ptr}, \texttt{std::shared\_ptr}, \texttt{std::weak\_ptr}) para automatizar la gesti\'on de memoria y evitar fugas. \texttt{std::unique\_ptr} gestiona propiedad exclusiva, \texttt{std::shared\_ptr} permite m\'ultiples propietarios mediante conteo de referencias, y \texttt{std::weak\_ptr} evita ciclos de referencia al no incrementar dicho conteo. Estos recursos se inicializan preferiblemente con \texttt{std::make\_shared} y \texttt{std::make\_unique}, que optimizan la asignaci\'on de memoria y previenen errores en contextos con excepciones.
+
+La filosof\'ia de C++ se basa en \textbf{RAII} (Resource Acquisition Is Initialization), donde los recursos se adquieren durante la construcci\'on y se liberan autom\'aticamente en la destrucci\'on, garantizando seguridad y evitando fugas.
+
+\section{Alias y simplificaci\'on de tipos}
+El keyword \texttt{using} permite crear alias para tipos complejos, mejorando la legibilidad. Por ejemplo, simplificar nombres de plantillas anidadas o punteros, facilitando el mantenimiento del c\'odigo sin alterar su funcionalidad.
+
+\section{Constructores y operadores}
+Los constructores por defecto inicializan miembros con valores predeterminados, mientras que el de copia crea r\'eplicas independientes. El constructor de movimiento transfiere recursos de objetos temporales (\textit{rvalues}), optimizando el rendimiento. Los operadores de asignaci\'on siguen l\'ogicas similares: el de copia emplea \textit{copy-and-swap} para seguridad ante excepciones, y el de movimiento transfiere recursos, dejando el objeto fuente en estado v\'alido pero indefinido.
+
+Un \textit{lvalue} es un objeto con ubicaci\'on de memoria persistente (variables), mientras que un \textit{rvalue} es un temporal. \texttt{std::move} convierte \textit{lvalues} en \textit{rvalues}, habilitando la sem\'antica de movimiento.
+
+\section{Inicializaci\'on y estructuras de control}
+La inicializaci\'on con \texttt{\{\}} (\textit{uniform initialization}) previene conversiones estrechas (\textit{narrowing conversions}) y ofrece consistencia en contenedores, clases y tipos fundamentales. En contraste, \texttt{()} se usa para llamadas a funciones o constructores expl\'icitos. \texttt{std::for\_each} con lambdas permite aplicar operaciones a rangos de elementos, mejorando la expresividad al definir comportamientos inline sin funciones externas.
+
+\section{Gesti\'on de memoria y excepciones}
+Los destructores no son necesarios cuando se usan \textit{smart pointers}, pero son cruciales para recursos no gestionados por RAII (archivos, sockets). Los \textit{raw pointers} persisten en interoperabilidad con APIs de C o optimizaciones de bajo nivel. \texttt{noexcept} indica que una funci\'on no lanzar\'a excepciones, permitiendo optimizaciones del compilador y garantizando seguridad en operaciones cr\'iticas como movimientos de recursos.
+
+\section{Inferencia de tipos y genericidad}
+\texttt{auto} deduce tipos en tiempo de compilaci\'on, \texttt{decltype} obtiene el tipo de una expresi\'on, y \texttt{decltype(auto)} combina ambas l\'ogicas para contextos complejos. Los \textit{templates} permiten c\'odigo gen\'erico, aceptando par\'ametros de tipo, valores no tipo o plantillas. La especializaci\'on de \textit{templates} adapta implementaciones para tipos concretos, optimizando o modificando comportamientos.
+
+\section{Arrays y constructores}
+Los arrays \textit{built-in} tienen tama\~no fijo y gesti\'on manual, mientras que \texttt{std::vector} y \texttt{std::array} ofrecen tama\~no din\'amico y seguridad. Los constructores inicializan miembros mediante listas de inicializaci\'on, evitando estados inconsistentes. El paso de par\'ametros por valor copia datos (costoso para objetos grandes), por referencia (\texttt{const T\&}) evita copias, y por puntero permite modificar el original o manejar opcionalidad.
+
+\section{Funciones y operadores}
+Las funciones \texttt{inline} sugieren al compilador insertar c\'odigo directamente, reduciendo \textit{overhead}. Las funciones \texttt{const} no modifican el estado del objeto, y la sintaxis \texttt{const T x} o \texttt{T const x} declara variables inmutables. La redefinici\'on de operadores como \texttt{[\,]} y \texttt{+} requiere devolver referencias para permitir asignaciones o crear nuevos objetos combinando operandos.
+
+\section{Uniones y tipos especializados}
+Las \texttt{union} almacenan m\'ultiples tipos en la misma direcci\'on de memoria, \'utiles en optimizaciones o interoperabilidad, aunque requieren manejo cuidadoso para evitar inconsistencias. Su uso es com\'un en sistemas embebidos o al interactuar con hardware.
+
+\end{document}
