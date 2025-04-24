@@ -1,9 +1,5 @@
 #include <iostream>
-#include <conio.h>
-#include <vector>
-#include <string>
 #include <stdlib.h>
-#include <cassert>
 using namespace std;
 
 //General Vector
